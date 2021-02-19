@@ -80,7 +80,7 @@ def printSharedPermissions(shared):
 def main(argv):
     entry_dir = argv[0]
     if not os.path.isdir(entry_dir):
-        print("Por favor, forneça um diretório contendo os Android Manifests")
+        print("Por favor forneça um diretório contendo os Android Manifests")
         sys.exit(0)
 
     xmls_dict = readIntoDict(entry_dir)

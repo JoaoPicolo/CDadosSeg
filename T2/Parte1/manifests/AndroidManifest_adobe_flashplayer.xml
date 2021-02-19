@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" installLocation="internalOnly" package="com.adobe.flashplayer">
+    <application android:icon="@drawable/flash_menu_icon" android:label="Adobe Flash Player 11.1">
+        <activity android:icon="@drawable/flash_settings_icon" android:label="Flash Player Settings" android:name="com.adobe.flashplayer.SettingsManager">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="SettingsManager"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.adobe.flashplayer.FlashExpandableFileChooser">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="FlashExpandableFileChooser"/>
+            </intent-filter>
+        </activity>
+        <service android:name="com.adobe.flashplayer.FlashPaintSurface">
+            <intent-filter>
+                <action android:name="android.webkit.PLUGIN"/>
+            </intent-filter>
+            <meta-data android:name="type" android:value="native"/>
+        </service>
+    </application>
+    <uses-permission android:name="android.webkit.permission.PLUGIN"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+</manifest>

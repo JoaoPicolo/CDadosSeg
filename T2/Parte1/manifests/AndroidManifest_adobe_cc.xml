@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="29" android:compileSdkVersionCodename="10" android:installLocation="auto" package="com.adobe.cc" platformBuildVersionCode="841" platformBuildVersionName="5.2.0">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+    <uses-feature android:name="android.hardware.camera" android:required="false"/>
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false"/>
+    <uses-permission android:name="com.samsung.android.iap.permission.BILLING"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE"/>
+    <uses-permission android:name="com.android.vending.BILLING"/>
+    <application android:allowBackup="false" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:hardwareAccelerated="true" android:icon="@drawable/ic_launcher" android:label="@string/loki_app_name" android:largeHeap="true" android:name="com.adobe.cc.CreativeCloudApplication" android:networkSecurityConfig="@xml/network_security_config" android:requestLegacyExternalStorage="true" android:roundIcon="@drawable/ic_launcher_round" android:supportsRtl="true" android:theme="@style/LokiAppTheme">
+        <activity android:label="@string/loki_app_name" android:launchMode="singleTask" android:name="com.adobe.cc.SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <data android:scheme="ccandroid"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="creativecloud.app.link" android:scheme="https"/>
+                <data android:host="creativecloud-alternate.app.link" android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND_MULTIPLE"/>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="image/*"/>
+                <data android:mimeType="video/*"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT"/>
+                <category android:name="android.intent.category.OPENABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="image/*"/>
+                <data android:mimeType="video/*"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PICK"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.OPENABLE"/>
+                <data android:mimeType="*/*"/>
+            </intent-filter>
+        </activity>
+        <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_jeTnv99Enc9RJNOIMGzDcfkdszoX9FP8"/>
+        <meta-data android:name="io.branch.sdk.BranchKey.test" android:value="key_live_jeTnv99Enc9RJNOIMGzDcfkdszoX9FP8"/>
+        <meta-data android:name="io.branch.sdk.TestMode" android:value="false"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:exported="false" android:launchMode="singleInstance" android:name="com.adobe.cc.CreativeCloudSignInActivity" android:theme="@style/CreativeCloudSignInActivity"/>
+        <provider android:authorities="com.adobe.creativecloud.internal.LokiFileProvider" android:exported="false" android:grantUriPermissions="true" android:name="com.adobe.cc.internal.LokiFileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/loki_file_paths"/>
+        </provider>
+        <provider android:authorities="com.adobe.creativecloud.internal.LokiCameraFileProvider" android:exported="false" android:grantUriPermissions="true" android:name="androidx.core.content.FileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/loki_file_paths"/>
+        </provider>
+        <activity android:configChanges="orientation|screenSize|smallestScreenSize" android:exported="true" android:name="com.adobe.cc.CreativeCloudNavigationActivity" android:theme="@style/CCHomeNavigationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="android" android:scheme="ccmobile"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="orientation|screenSize" android:exported="false" android:launchMode="singleTop" android:name="com.adobe.cc.max.view.ui.SessionDetailActivity" android:theme="@style/CCHomeNavigationActivity"/>
+        <activity android:configChanges="orientation|screenSize" android:exported="false" android:label="@string/title_activity_camera" android:name="com.adobe.cc.CameraActivity" android:theme="@style/Theme.Transparent"/>
+        <activity android:configChanges="orientation|screenSize" android:exported="false" android:name="com.adobe.cc.upload.AdobeCCUploadActivity" android:theme="@style/CCHomeNavigationActivity"/>
+        <activity android:configChanges="orientation|screenSize" android:exported="false" android:name="com.adobe.cc.collaboration.activity.CollaboratorsActivity" android:theme="@style/CCHomeNavigationActivity"/>
+        <activity android:configChanges="orientation|screenSize" android:exported="false" android:name="com.adobe.cc.notification.NotificationsActivity" android:theme="@style/CCHomeNavigationActivity"/>
+        <activity android:configChanges="orientation|screenSize" android:exported="false" android:name="com.adobe.cc.PushNotification.AdobeNotificationHandlerActivity" android:theme="@style/CCHomeNavigationActivity"/>
+        <activity android:configChanges="orientation|screenSize" android:exported="false" android:name="com.adobe.cc.comments.CommentsActivity" android:theme="@style/CCHomeNavigationActivity"/>
+        <activity android:configChanges="orientation|screenSize" android:exported="false" android:name="com.adobe.cc.annotations.AdobeAssetAnnotationsActivity" android:theme="@style/AdobeCSDKThemeActivity"/>
+        <activity android:configChanges="orientation|screenSize" android:exported="false" android:name="com.adobe.cc.offline.view.AdobeOfflineItemOneUpViewerActivity" android:theme="@style/AdobeCSDKThemeActivity"/>
+        <activity android:configChanges="orientation|screenSize" android:exported="false" android:name="com.adobe.cc.collaboration.activity.CollaboratorProfileActivity" android:theme="@style/AddCollaboratorTheme"/>
+        <activity android:exported="false" android:name="com.adobe.cc.collaboration.activity.AddCollaboratorsActivity" android:theme="@style/CCHomeNavigationActivity"/>
+        <activity android:name="net.hockeyapp.android.UpdateActivity"/>
+        <activity android:excludeFromRecents="false" android:launchMode="singleTask" android:name="com.adobe.engagementsdk.AdobeEngagementActivity" android:theme="@android:style/Theme.Dialog">
+            <intent-filter>
+                <action android:name="AdobeCreativeSDKEngagement.PushAction"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="orientation|screenSize" android:launchMode="singleTop" android:name="com.adobe.cc.max.view.ui.SessionsCatalogActivity" android:windowSoftInputMode="adjustResize"/>
+        <activity android:configChanges="orientation|screenSize" android:launchMode="singleTop" android:name="com.adobe.cc.max.view.ui.MoreAboutMAXActivity"/>
+        <activity android:configChanges="orientation|screenSize" android:launchMode="singleTop" android:name="com.adobe.cc.max.view.ui.LearnAboutCCActivity"/>
+        <receiver android:name="com.adobe.cc.PushNotification.AdobePushNotificationReciever"/>
+        <receiver android:name="com.adobe.cc.max.MAXTimeStartAlarmReceiver"/>
+        <receiver android:exported="true" android:name="com.adobe.cc.internal.CCMobileBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER"/>
+            </intent-filter>
+        </receiver>
+        <service android:name="com.adobe.cc.PushNotification.AdobePushNotificationCenterIntentService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:exported="false" android:name="com.adobe.cc.PushNotification.AdobePushNotificationService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <service android:name="com.adobe.creativesdk.foundation.internal.auth.authenticator.AdobeCSDKAdobeIDAuthenticatorServiceCC">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator"/>
+            </intent-filter>
+            <meta-data android:name="android.accounts.AccountAuthenticator" android:resource="@xml/adobe_csdk_adobeid_authenticator_cc_description"/>
+        </service>
+        <service android:name="com.adobe.creativesdk.foundation.internal.utils.AdobeCancelDownloadIntentService"/>
+        <service android:name="com.adobe.cc.screenshotsUpload.ScreenshotsFolderObserverJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name="com.adobe.cc.learn.Core.AdobeLearnSession.LearnSupportServerJobScheduler" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:enabled="true" android:name="com.adobe.cc.share.AdobeShareUploadManager$AdobeMultipleUploadIntentService"/>
+        <service android:name="com.adobe.creativesdk.foundation.internal.utils.UploadDownloadNotificationService" android:permission="android.permission.FOREGROUND_SERVICE"/>
+        <service android:name="com.adobe.cc.screenshotsUpload.ScreenshotsFolderObserverService"/>
+        <receiver android:name="com.adobe.cc.screenshotsUpload.BroadcastReceiverForDeviceBootUp" android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:enabled="true" android:name="com.adobe.cc.annotations.RestartService">
+            <intent-filter>
+                <action android:name="restartApps"/>
+            </intent-filter>
+        </receiver>
+        <activity android:configChanges="orientation|screenSize" android:label="@string/title_activity_profile" android:name="com.adobe.cc.settings.ProfileActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:label="@string/title_activity_about_creativeCloud" android:name="com.adobe.cc.settings.AboutActivity" android:theme="@style/CCHomeNavigationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize" android:name="com.facebook.FacebookActivity" android:theme="@style/BsdkFacebookLoginActivityTheme"/>
+        <activity android:label="@string/title_activity_Preferences" android:name="com.adobe.cc.settings.PreferencesActivity" android:theme="@style/CCHomeNavigationActivity"/>
+        <activity android:label="@string/title_activity_screenshot" android:name="com.adobe.cc.screenshotsUpload.ScreenshotActivity" android:theme="@style/AppTheme.NoActionBar.FullScreen"/>
+        <activity android:label="@string/title_activity_screenshots" android:name="com.adobe.cc.settings.ScreenshotsActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:configChanges="orientation|screenSize" android:name="com.adobe.cc.ProviderExtension.DocumentPickerActivity" android:theme="@style/AdobeDocProviderActivity"/>
+        <activity android:configChanges="orientation|screenSize" android:name="com.adobe.cc.share.AdobeCCShareActivity" android:theme="@style/AdobeCSDKShareActivity"/>
+        <activity android:name="com.adobe.cc.util.AdobeCCPublishProjectNotificationHandlerActivity" android:noHistory="true" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:exported="false" android:name="com.adobe.cc.share.CopyToClipboardActivity">
+            <intent-filter android:icon="@drawable/ic_content_copy_black_24dp" android:label="@string/copy_to_clipboard_text" android:priority="999">
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:name="com.adobe.cc.archived.activity.ArchivedAssetsActivity" android:resizeableActivity="true" android:stateNotNeeded="false" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:name="com.adobe.cc.learn.UI.PlayListDetailView.PlaylistActivity" android:resizeableActivity="true" android:stateNotNeeded="false" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:name="com.adobe.cc.learn.UI.TutorialWebView.LearnTutorialWebViewActivity" android:resizeableActivity="true" android:stateNotNeeded="false" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:exported="false" android:name="com.adobe.creativesdk.foundation.internal.storage.controllers.FilesAssetViewerActivity" android:theme="@style/AdobeAssetViewerLightTheme"/>
+        <activity android:configChanges="orientation|screenSize" android:exported="false" android:name="com.adobe.creativesdk.foundation.internal.storage.controllers.AdobeUXPhotoAssetOneUpViewerActivity" android:theme="@style/AdobeAssetViewerLightTheme"/>
+        <activity android:configChanges="orientation|screenSize" android:exported="false" android:name="com.adobe.creativesdk.foundation.internal.storage.controllers.AdobeUxAssetBrowserV2Activity" android:theme="@style/AdobeCSDKThemeActivity"/>
+        <activity android:configChanges="orientation|screenSize" android:exported="false" android:name="com.adobe.creativesdk.foundation.internal.storage.controllers.AdobeUXAssetVideoActivity" android:theme="@style/AdobeAssetViewerLightTheme"/>
+        <activity android:configChanges="orientation|screenSize" android:exported="false" android:name="com.adobe.creativesdk.foundation.internal.storage.controllers.library.LibraryViewerActivity" android:theme="@style/AdobeAssetViewerLightTheme"/>
+        <activity android:configChanges="orientation|screenSize" android:exported="false" android:name="com.adobe.creativesdk.foundation.internal.storage.controllers.AdobeUXMobilePackageItemOneUpViewerActivity" android:theme="@style/AdobeAssetViewerLightTheme"/>
+        <activity android:configChanges="orientation|screenSize" android:exported="false" android:name="com.adobe.creativesdk.foundation.internal.storage.controllers.AdobeUXCompositionOneUpViewerActivity" android:theme="@style/AdobeAssetViewerLightTheme"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:exported="false" android:name="com.adobe.creativesdk.foundation.internal.storage.controllers.multiselect.AssetSelectionActivity" android:theme="@style/CCHomeNavigationActivity"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:exported="false" android:name="com.adobe.cc.smartEdits.FilePickerActivity" android:theme="@style/CCHomeNavigationActivity"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:exported="false" android:launchMode="singleInstance" android:name="com.adobe.cc.smartEdits.SmartEditsResultActivity" android:theme="@style/CCHomeNavigationActivity"/>
+        <activity android:configChanges="orientation|screenSize" android:exported="false" android:name="com.adobe.creativesdk.foundation.internal.storage.controllers.libraryedit.LibraryDuplicateMoveActivity" android:theme="@style/CCHomeNavigationActivity"/>
+        <activity android:configChanges="orientation|screenSize" android:exported="false" android:name="com.adobe.creativesdk.foundation.internal.settings.CloudPickerActivity" android:theme="@style/AdobeCSDKThemeActivity.NoActionBar"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:name="com.adobe.creativesdk.foundation.internal.storage.controllers.status.ViewStatusActivity" android:resizeableActivity="true" android:theme="@style/CCHomeNavigationActivity"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:exported="false" android:label="WorkSearchActivity" android:name="com.adobe.cc.UnivSearch.WorkSearchActivity" android:resizeableActivity="true" android:theme="@style/CCHomeNavigationActivity" android:windowSoftInputMode="stateVisible"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:exported="false" android:label="LearnSearchActivity" android:name="com.adobe.cc.learn.Core.LearnSearch.LearnSearchActivity" android:resizeableActivity="true" android:theme="@style/CCHomeNavigationActivity" android:windowSoftInputMode="adjustNothing"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:exported="false" android:label="MaxSearchActivity" android:name="com.adobe.cc.learn.Core.MaxSearch.MaxSearchActivity" android:resizeableActivity="true" android:theme="@style/CCHomeNavigationActivity" android:windowSoftInputMode="adjustNothing"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:exported="false" android:label="SearchLrPhotoOneUpViewerActivity" android:name="com.adobe.cc.UnivSearch.Lr.SearchLrPhotoOneUpViewerActivity" android:resizeableActivity="true" android:theme="@style/CCHomeNavigationActivity" android:windowSoftInputMode="adjustNothing"/>
+        <receiver android:name="com.adobe.creativesdk.foundation.internal.utils.LocaleChangeBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <activity android:exported="false" android:launchMode="singleTop" android:name="com.adobe.cc.util.AdobeCCForceUpdateActivity" android:theme="@style/CCHomeNavigationActivity"/>
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        <receiver android:exported="true" android:name="io.branch.referral.InstallListener">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER"/>
+            </intent-filter>
+        </receiver>
+        <activity android:name="com.adobe.creativesdk.foundation.applibrary.internal.AppLibraryActivity" android:theme="@style/Adobe_CSDK_AppLibraryTheme"/>
+        <activity android:documentLaunchMode="never" android:excludeFromRecents="true" android:exported="false" android:finishOnCloseSystemDialogs="true" android:name="com.adobe.creativesdk.foundation.applibrary.internal.ActionResolverActivity" android:relinquishTaskIdentity="true" android:theme="@style/BottomSheet.Light"/>
+        <activity android:configChanges="orientation|screenSize" android:label="@string/title_stock" android:name="com.adobe.creativesdk.foundation.stock.internal.activity.StartUpActivity" android:theme="@style/AdobeStockTheme" android:windowSoftInputMode="stateVisible"/>
+        <service android:name="com.adobe.creativesdk.foundation.stock.internal.services.StockBackgroundImagesDownloaderService"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:label="@string/title_stock" android:name="com.adobe.creativesdk.foundation.stock.internal.activity.SearchResultsActivity" android:theme="@style/AdobeStockTheme"/>
+        <activity android:label="@string/adobe_csdk_uxassetbrowser_myacount" android:name="com.adobe.creativesdk.foundation.stock.internal.activity.MyAccountActivity" android:theme="@style/Theme.AppCompat.Light"/>
+        <activity android:label="@string/title_activity_filters" android:name="com.adobe.creativesdk.foundation.stock.internal.activity.FiltersActivity" android:theme="@style/AdobeStockTheme"/>
+        <activity android:label="@string/title_activity_orientations" android:name="com.adobe.creativesdk.foundation.stock.internal.activity.OrientationsActivity" android:theme="@style/AdobeStockTheme"/>
+        <activity android:configChanges="orientation|screenSize" android:name="com.adobe.creativesdk.foundation.stock.internal.activity.OneUpViewActivity" android:theme="@style/AdobeStockTheme"/>
+        <activity android:name="com.adobe.creativesdk.color.internal.ui.activity.ColorThemeEditActivity" android:theme="@style/CSDKColor.ToolbarTheme" android:windowSoftInputMode="adjustNothing"/>
+        <activity android:name="com.adobe.creativesdk.color.internal.ui.activity.ColorComponentActivity" android:theme="@style/CSDKColor.ActionBarTheme" android:windowSoftInputMode="adjustNothing"/>
+        <activity android:name="com.adobe.creativesdk.color.internal.ui.activity.LibraryColorItemsListActivity" android:theme="@style/CSDKColor.ToolbarTheme"/>
+        <activity android:exported="false" android:name="com.adobe.creativesdk.typekit.TypekitActivity" android:theme="@style/TypekitTheme">
+            <intent-filter>
+                <action android:name="adobe.intent.action.GET_CONTENT"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="application/x-font-ttf"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.adobe.creativesdk.typekit.TypekitFilterActivity" android:theme="@style/TypekitTheme"/>
+        <activity android:name="com.adobe.creativesdk.typekit.TypekitFontInfoActivity" android:theme="@style/TypekitTheme"/>
+        <activity android:configChanges="keyboard|keyboardHidden|screenLayout" android:name="com.adobe.creativesdk.foundation.internal.auth.AdobeDataUsageNoticeActivity" android:theme="@style/AppTheme.Transparent"/>
+        <activity android:configChanges="orientation|screenSize" android:label="@string/adobe_csdk_creative_cloud" android:launchMode="singleTask" android:multiprocess="true" android:name="com.adobe.creativesdk.foundation.internal.auth.AdobeAuthSignInActivity" android:theme="@style/AdobeCSDKAuthThemeActivity" android:windowSoftInputMode="adjustNothing|stateUnchanged"/>
+        <activity android:exported="false" android:label="@string/adobe_csdk_creative_cloud" android:launchMode="standard" android:multiprocess="true" android:name="com.adobe.creativesdk.foundation.internal.auth.AdobeAuthContinuableEventActivity" android:theme="@style/AdobeCSDKAuthThemeActivity" android:windowSoftInputMode="adjustNothing|stateUnchanged"/>
+        <activity android:name="com.adobe.creativesdk.foundation.internal.base.AdobeTOUHandlerActivity"/>
+        <activity android:exported="false" android:name="com.behance.sdk.ui.activities.BehanceSDKProjectEditorActivity" android:theme="@style/BsdkMaterialBaseTheme"/>
+        <activity android:name="com.behance.sdk.ui.activities.BehanceSDKCropperActivity" android:theme="@style/BsdkMaterialBaseTheme"/>
+        <activity android:exported="false" android:name="com.behance.sdk.ui.activities.BehanceSDKPublishProjectActivity" android:theme="@style/BsdkAddProjectActivityTheme"/>
+        <activity android:exported="false" android:name="com.behance.sdk.ui.activities.BehanceSDKCreateProjectWFActivity" android:theme="@style/BsdkAddProjectActivityTheme"/>
+        <activity android:name="com.behance.sdk.ui.activities.BehanceSDKPublishResultsActivity" android:theme="@style/BsdkPublishResultsActivityTheme"/>
+        <activity android:exported="false" android:name="com.behance.sdk.ui.activities.BehanceSDKEditProfileActivity" android:theme="@style/BsdkMaterialBaseTheme"/>
+        <activity android:exported="false" android:name="com.facebook.LoginActivity" android:theme="@style/BsdkFacebookLoginActivityTheme"/>
+        <activity android:exported="false" android:name="com.behance.sdk.ui.activities.BehanceSDKLoginToTwitterActivity"/>
+        <activity android:exported="false" android:name="com.behance.sdk.ui.activities.BehanceSDKUnlinkSocialAccountActivity" android:theme="@style/BsdkUnlinkSocialAccountActivityTheme"/>
+        <activity android:name="com.behance.sdk.ui.activities.BehanceSDKAdobeCloudSelectionActivity" android:theme="@style/BsdkAdobeCloudSelectionViewTheme"/>
+        <activity android:name="com.behance.sdk.ui.activities.BehanceSDKProjectDetailActivity" android:theme="@style/BsdkBaseThemeTransparentSystemUI.Dark"/>
+        <activity android:name="com.behance.sdk.ui.activities.BehanceSDKCCLauncherActivity" android:theme="@style/BsdkAdobeCCLauncherActivityTheme"/>
+        <service android:name="com.behance.sdk.services.BehanceSDKPublishProjectService"/>
+        <service android:enabled="true" android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"/>
+        <service android:name="com.behance.sdk.services.BehanceSDKProjectEditorService"/>
+        <activity android:name="com.facebook.CustomTabMainActivity"/>
+        <activity android:name="com.facebook.CustomTabActivity"/>
+        <provider android:authorities="com.adobe.cc.com.squareup.picasso" android:exported="false" android:name="com.squareup.picasso.PicassoProvider"/>
+        <provider android:authorities="com.adobe.cc.MarketingInitProvider" android:exported="false" android:name="com.facebook.marketing.internal.MarketingInitProvider"/>
+        <provider android:authorities="com.adobe.cc.FacebookInitProvider" android:exported="false" android:name="com.facebook.internal.FacebookInitProvider"/>
+        <receiver android:exported="false" android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <service android:exported="false" android:name="com.google.firebase.messaging.FirebaseMessagingService">
+            <intent-filter android:priority="-500">
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <activity android:excludeFromRecents="true" android:exported="true" android:launchMode="singleTask" android:name="com.google.firebase.auth.internal.FederatedSignInActivity" android:permission="com.google.firebase.auth.api.gms.permission.LAUNCH_FEDERATED_SIGN_IN" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <service android:directBootAware="true" android:exported="false" android:name="com.google.firebase.components.ComponentDiscoveryService">
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.remoteconfig.RemoteConfigRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.iid.Registrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.abt.component.AbtRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.crashlytics.CrashlyticsRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+        </service>
+        <activity android:excludeFromRecents="true" android:exported="false" android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <service android:exported="true" android:name="com.google.android.gms.auth.api.signin.RevocationBoundService" android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"/>
+        <receiver android:exported="true" android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+            </intent-filter>
+        </receiver>
+        <service android:exported="true" android:name="com.google.firebase.iid.FirebaseInstanceIdService">
+            <intent-filter android:priority="-500">
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+        <activity android:exported="false" android:name="com.google.android.gms.common.api.GoogleApiActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <provider android:authorities="com.adobe.cc.firebaseinitprovider" android:directBootAware="true" android:exported="false" android:initOrder="100" android:name="com.google.firebase.provider.FirebaseInitProvider"/>
+        <receiver android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementReceiver"/>
+        <service android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementService"/>
+        <service android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+        <service android:exported="false" android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery">
+            <meta-data android:name="backend:com.google.android.datatransport.cct.CctBackendFactory" android:value="cct"/>
+        </service>
+        <service android:exported="false" android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <receiver android:exported="false" android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"/>
+        <service android:directBootAware="true" android:exported="false" android:name="androidx.room.MultiInstanceInvalidationService"/>
+        <provider android:authorities="com.adobe.cc.lifecycle-process" android:exported="false" android:multiprocess="true" android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"/>
+        <activity android:configChanges="orientation|screenSize" android:name="com.samsung.android.sdk.iap.lib.activity.DialogActivity" android:theme="@style/Theme.Empty"/>
+        <activity android:configChanges="orientation|screenSize" android:name="com.samsung.android.sdk.iap.lib.activity.CheckPackageActivity" android:theme="@style/Theme.Empty"/>
+        <activity android:configChanges="orientation|screenSize" android:name="com.samsung.android.sdk.iap.lib.activity.AccountActivity" android:theme="@style/Theme.Transparent"/>
+        <activity android:configChanges="orientation|screenSize" android:name="com.samsung.android.sdk.iap.lib.activity.PaymentActivity" android:theme="@style/Theme.Empty"/>
+        <meta-data android:name="com.google.android.play.billingclient.version" android:value="2.1.0"/>
+        <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize" android:name="com.android.billingclient.api.ProxyBillingActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <activity android:enabled="false" android:exported="false" android:launchMode="singleInstance" android:name="com.google.android.play.core.missingsplits.PlayCoreMissingSplitsActivity" android:process=":playcore_missing_splits_activity" android:stateNotNeeded="true"/>
+        <activity android:enabled="false" android:exported="false" android:name="com.google.android.play.core.common.PlayCoreDialogWrapperActivity" android:stateNotNeeded="true" android:theme="@style/Theme.PlayCore.Transparent"/>
+        <service android:enabled="false" android:exported="true" android:name="com.google.android.play.core.assetpacks.AssetPackExtractionService"/>
+    </application>
+</manifest>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.microsoft.ageofempirescastlesiege" platformBuildVersionCode="26" platformBuildVersionName="8.0.0">
+    <uses-feature android:glEsVersion="0x00030000" android:required="true"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+    <uses-permission android:name="com.android.vending.BILLING"/>
+    <uses-permission android:name="com.android.vending.CHECK_LICENSE"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+    <permission android:name="com.microsoft.ageofempirescastlesiege.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
+    <uses-permission android:name="com.microsoft.ageofempirescastlesiege.permission.C2D_MESSAGE"/>
+    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PROFILE"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-feature android:name="android.hardware.telephony" android:required="false"/>
+    <application android:allowBackup="true" android:hasCode="true" android:icon="@mipmap/icon" android:label="@string/app_name" android:name="com.smokingguninc.engine.framework.SgiApplication" android:resizeableActivity="false" android:theme="@style/OnlineidUiTheme">
+        <service android:name="com.microsoft.castlesclient.CastlesClientGcmListenerService">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+            </intent-filter>
+        </service>
+        <activity android:label="@string/app_name" android:launchMode="singleTask" android:name="com.smokingguninc.engine.framework.SgiLauncherActivity" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:label="@string/app_name" android:launchMode="standard" android:name="com.smokingguninc.engine.framework.SgiActivity" android:screenOrientation="sensorLandscape" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" android:windowSoftInputMode="adjustNothing"/>
+        <service android:name="com.smokingguninc.engine.BillingService"/>
+        <receiver android:name="com.smokingguninc.engine.BillingReceiver">
+            <intent-filter>
+                <action android:name="com.android.vending.billing.IN_APP_NOTIFY"/>
+                <action android:name="com.android.vending.billing.RESPONSE_CODE"/>
+                <action android:name="com.android.vending.billing.PURCHASE_STATE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+        <receiver android:name="com.google.android.gms.gcm.GcmReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                <category android:name="com.microsoft.ageofempirescastlesiege"/>
+            </intent-filter>
+        </receiver>
+        <service android:exported="false" android:name="com.smokingguninc.engine.framework.gcm.SgiInstanceIDListenerService">
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID"/>
+            </intent-filter>
+        </service>
+        <service android:exported="false" android:name="com.smokingguninc.engine.framework.gcm.SgiRegistrationIntentService"/>
+        <service android:exported="false" android:name="com.smokingguninc.engine.framework.NativeCrashUploadService" android:process=":remote">
+            <intent-filter>
+                <action android:name="com.smokingguninc.engine.framework.action.UPLOAD_CRASH"/>
+            </intent-filter>
+        </service>
+        <receiver android:name="com.smokingguninc.engine.framework.SgiAlarmReceiver"/>
+        <service android:name="com.smokingguninc.engine.framework.SgiDownloaderService"/>
+        <service android:name="com.smokingguninc.engine.framework.SgiDirectDownloaderService"/>
+        <receiver android:exported="true" android:name="com.appsflyer.SingleInstallBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER"/>
+            </intent-filter>
+        </receiver>
+        <provider android:authorities="com.microsoft.ageofempirescastlesiege.google_measurement_service" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementContentProvider"/>
+        <receiver android:enabled="true" android:name="com.google.android.gms.measurement.AppMeasurementReceiver">
+            <intent-filter>
+                <action android:name="com.google.android.gms.measurement.UPLOAD"/>
+            </intent-filter>
+        </receiver>
+        <service android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementService"/>
+        <activity android:name="net.hockeyapp.android.UpdateActivity"/>
+        <activity android:name="net.hockeyapp.android.FeedbackActivity"/>
+        <activity android:name="net.hockeyapp.android.PaintActivity"/>
+        <activity android:name="net.hockeyapp.android.LoginActivity"/>
+        <activity android:name="net.hockeyapp.android.ExpiryInfoActivity"/>
+        <activity android:name="com.microsoft.xbox.idp.ui.AuthFlowActivity" android:theme="@style/OnlineidUiTheme" android:windowSoftInputMode="adjustPan|stateUnchanged"/>
+        <activity android:name="com.microsoft.xbox.idp.ui.ErrorActivity" android:theme="@style/OnlineidUiTheme"/>
+        <service android:exported="false" android:name="com.microsoft.xbox.idp.model.gcm.NotificationInstanceIDListenerService">
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID"/>
+            </intent-filter>
+        </service>
+        <service android:exported="false" android:name="com.microsoft.xbox.idp.model.gcm.RegistrationIntentService"/>
+        <activity android:exported="false" android:icon="@drawable/msa_ms_logo" android:label="@string/webflow_header" android:name="com.microsoft.onlineid.authenticator.AccountAddPendingActivity" android:theme="@style/Theme.MSA"/>
+        <activity android:configChanges="orientation|screenSize" android:exported="false" android:name="com.microsoft.onlineid.internal.ui.WebFlowActivity" android:theme="@style/Theme.MSA.NoActionBar" android:windowSoftInputMode="adjustResize"/>
+        <activity android:configChanges="orientation|screenSize" android:exported="false" android:icon="@drawable/msa_ms_logo" android:label="@string/webflow_header" android:name="com.microsoft.onlineid.ui.AddAccountActivity" android:theme="@style/Theme.MSA" android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="com.microsoft.onlineid.internal.ADD_ACCOUNT"/>
+                <action android:name="com.microsoft.onlineid.internal.SIGN_UP_ACCOUNT"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="orientation|screenSize" android:exported="false" android:name="com.microsoft.onlineid.ui.SignOutActivity" android:theme="@style/Theme.MSA.Transparent"/>
+        <activity android:exported="false" android:icon="@drawable/msa_ms_logo" android:label="@string/webflow_header" android:name="com.microsoft.onlineid.internal.ui.AccountPickerActivity" android:theme="@style/Theme.MSA.Dialog">
+            <intent-filter>
+                <action android:name="com.microsoft.onlineid.internal.PICK_ACCOUNT"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:icon="@drawable/msa_ms_logo" android:label="@string/webflow_header" android:name="com.microsoft.onlineid.internal.ui.InterruptResolutionActivity" android:theme="@style/Theme.MSA"/>
+        <service android:exported="false" android:name="com.microsoft.onlineid.internal.sso.client.BackupService">
+            <intent-filter>
+                <action android:name="com.microsoft.onlineid.internal.sso.client.PUSH_BACKUP"/>
+                <action android:name="com.microsoft.onlineid.internal.sso.client.PUSH_BACKUP_IF_NEEDED"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </service>
+        <service android:exported="false" android:name="com.microsoft.onlineid.internal.MsaService">
+            <intent-filter>
+                <action android:name="com.microsoft.onlineid.internal.GET_TICKET"/>
+                <action android:name="com.microsoft.onlineid.internal.UPDATE_PROFILE"/>
+                <action android:name="com.microsoft.onlineid.internal.SIGN_OUT"/>
+                <action android:name="com.microsoft.onlineid.internal.SIGN_OUT_ALL_APPS"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </service>
+        <service android:enabled="true" android:exported="true" android:name="com.microsoft.onlineid.internal.sso.service.MsaSsoService">
+            <intent-filter>
+                <action android:name="com.microsoft.msa.action.SSO_SERVICE"/>
+            </intent-filter>
+            <meta-data android:name="com.microsoft.msa.service.sso_version" android:value="6"/>
+            <meta-data android:name="com.microsoft.msa.service.sdk_version" android:value="@string/sdk_version_name"/>
+        </service>
+    </application>
+</manifest>

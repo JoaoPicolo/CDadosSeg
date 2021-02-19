@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="com.adobe.reader.intune" platformBuildVersionCode="25" platformBuildVersionName="7.1.1">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="com.android.vending.BILLING"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera" android:required="false"/>
+    <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:smallScreens="true" android:xlargeScreens="true"/>
+    <uses-feature android:name="android.hardware.autofocus" android:required="false"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <meta-data android:name="android.support.VERSION" android:value="25.3.0"/>
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <application android:allowBackup="false" android:icon="@drawable/acrobat_dc_intune_android" android:label="@string/IDS_APP_NAME" android:largeHeap="true" android:name="com.adobe.reader.misc.ARApp">
+        <meta-data android:name="com.microsoft.intune.mam.DefaultMAMServiceEnrollment" android:value="true"/>
+        <meta-data android:name="com.microsoft.intune.mam.MAMPolicyRequired" android:value="true"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:exported="true" android:name="com.adobe.reader.AdobeReader" android:noHistory="true" android:screenOrientation="user" android:theme="@style/Theme.AdobeReader.IntuneSplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="*" android:pathPattern=".*\\.pdf" android:scheme="file"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="application/pdf"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="*" android:pathPattern=".*\\.pdf" android:scheme="http"/>
+                <data android:host="*" android:pathPattern=".*\\.pdf" android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="@string/IDS_DEEP_LINK_HOST_STR_GLB" android:scheme="@string/IDS_DEEP_LINK_SCHEME_STR_GLB"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.dropbox.android.intent.action.DBXC_EDIT"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="application/pdf"/>
+            </intent-filter>
+        </activity>
+        <meta-data android:name="android.content.APP_RESTRICTIONS" android:resource="@xml/app_restrictions"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:launchMode="singleTask" android:name="com.adobe.reader.viewer.ARViewerActivity" android:screenOrientation="user">
+            <layout android:minHeight="@dimen/min_height_in_multi_window_mode" android:minWidth="@dimen/min_width_in_multi_window_mode"/>
+        </activity>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:launchMode="singleTask" android:name="com.adobe.reader.viewer.ARSplitPaneActivity">
+            <layout android:minHeight="@dimen/min_height_in_multi_window_mode" android:minWidth="@dimen/min_width_in_multi_window_mode"/>
+        </activity>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:label="@string/IDS_MY_ACCOUNT_TITLE" android:name="com.adobe.reader.services.ARUserAccountsActivity"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:label="@string/IDS_HELP_COMMAND_LABEL" android:name="com.adobe.reader.help.ARHelpActivity"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:hardwareAccelerated="false" android:launchMode="singleTop" android:name="com.adobe.reader.help.AROnboardingHelpActivity" android:theme="@style/Theme.AdobeReader.OnBoardingHelp"/>
+        <activity android:configChanges="keyboardHidden|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:hardwareAccelerated="false" android:launchMode="singleTask" android:name="com.adobe.reader.help.ARSigningExperimentHelpActivity" android:theme="@style/Theme.AdobeReader.OnBoardingHelp"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:label="@string/IDS_SIGN_IN_STR" android:name="com.adobe.reader.services.auth.ARServicesLoginActivity" android:theme="@style/AdobeReader.ActionBar.Theme"/>
+        <activity android:name="com.adobe.mobile.MessageFullScreenActivity" android:theme="@android:style/Theme.Translucent"/>
+        <receiver android:name="com.adobe.mobile.MessageNotificationHandler"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:label="@string/IDS_SIGN_IN_STR" android:name="com.adobe.libs.services.SVServicesBaseActivity" android:theme="@style/AdobeReader.ActionBar.Theme"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:label="@string/IDS_SIGN_IN_STR" android:name="com.adobe.libs.services.auth.SVServiceIMSLoginActivity" android:theme="@style/AdobeReader.ActionBar.Theme"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:label="@string/IDS_SIGN_IN_STR" android:name="com.adobe.libs.services.auth.SVServiceIMSSignUpActivity" android:theme="@style/AdobeReader.ActionBar.Theme"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:label="@string/IDS_SIGN_IN_STR" android:name="com.adobe.libs.services.auth.SVServiceFacebookLoginActivity" android:theme="@style/AdobeReader.ActionBar.Theme"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:label="@string/IDS_SIGN_IN_STR" android:name="com.adobe.libs.services.auth.SVServiceGoogleLoginActivity" android:theme="@style/AdobeReader.ActionBar.Theme"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:label="@string/IDS_MANAGE_ACCOUNT_TITLE" android:name="com.adobe.reader.connector.ARConnectorManageAccountActivity" android:theme="@style/AdobeReader.ActionBar.Theme"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="true" android:icon="@drawable/createpdf_android" android:label="@string/IDS_CHOOSER_DIALOG_TITLE_STR" android:name="com.adobe.reader.services.cpdf.ARCreatePDFActivity" android:theme="@style/Theme.AdobeReader.Transparent">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="application/msword"/>
+                <data android:mimeType="application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+                <data android:mimeType="application/vnd.ms-excel"/>
+                <data android:mimeType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
+                <data android:mimeType="application/vnd.ms-powerpoint"/>
+                <data android:mimeType="application/vnd.openxmlformats-officedocument.presentationml.presentation"/>
+                <data android:mimeType="application/vnd.oasis.opendocument.formula"/>
+                <data android:mimeType="application/vnd.oasis.opendocument.text"/>
+                <data android:mimeType="application/vnd.oasis.opendocument.presentation"/>
+                <data android:mimeType="application/vnd.oasis.opendocument.spreadsheet"/>
+                <data android:mimeType="application/vnd.oasis.opendocument.graphics"/>
+                <data android:mimeType="application/vnd.sun.xml.draw"/>
+                <data android:mimeType="application/vnd.sun.xml.calc"/>
+                <data android:mimeType="application/vnd.sun.xml.impress"/>
+                <data android:mimeType="application/vnd.sun.xml.writer"/>
+                <data android:mimeType="application/vnd.sun.xml.writer.template"/>
+                <data android:mimeType="application/vnd.ms-publisher"/>
+                <data android:mimeType="application/postscript"/>
+                <data android:mimeType="text/plain"/>
+                <data android:mimeType="text/richtext"/>
+                <data android:mimeType="text/rtf"/>
+                <data android:mimeType="application/x-indesign"/>
+                <data android:mimeType="application/illustrator"/>
+                <data android:mimeType="image/vnd.adobe.photoshop"/>
+                <data android:mimeType="image/x-photoshop"/>
+                <data android:mimeType="application/rtf"/>
+                <data android:mimeType="application/vnd.ms-word"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="image/bmp"/>
+                <data android:mimeType="image/gif"/>
+                <data android:mimeType="image/jpeg"/>
+                <data android:mimeType="image/png"/>
+                <data android:mimeType="image/tiff"/>
+                <data android:mimeType="image/x-ms-bmp"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="*" android:scheme="file"/>
+                <data android:pathPattern=".*\\.doc"/>
+                <data android:pathPattern=".*\\.docx"/>
+                <data android:pathPattern=".*\\.xls"/>
+                <data android:pathPattern=".*\\.xlsx"/>
+                <data android:pathPattern=".*\\.ppt"/>
+                <data android:pathPattern=".*\\.pptx"/>
+                <data android:pathPattern=".*\\.odf"/>
+                <data android:pathPattern=".*\\.odt"/>
+                <data android:pathPattern=".*\\.odp"/>
+                <data android:pathPattern=".*\\.ods"/>
+                <data android:pathPattern=".*\\.odg"/>
+                <data android:pathPattern=".*\\.sxd"/>
+                <data android:pathPattern=".*\\.sxc"/>
+                <data android:pathPattern=".*\\.sxi"/>
+                <data android:pathPattern=".*\\.sxw"/>
+                <data android:pathPattern=".*\\.stw"/>
+                <data android:pathPattern=".*\\.pub"/>
+                <data android:pathPattern=".*\\.ps"/>
+                <data android:pathPattern=".*\\.txt"/>
+                <data android:pathPattern=".*\\.text"/>
+                <data android:pathPattern=".*\\.rtf"/>
+                <data android:pathPattern=".*\\.bmp"/>
+                <data android:pathPattern=".*\\.gif"/>
+                <data android:pathPattern=".*\\.jpeg"/>
+                <data android:pathPattern=".*\\.jpg"/>
+                <data android:pathPattern=".*\\.png"/>
+                <data android:pathPattern=".*\\.tif"/>
+                <data android:pathPattern=".*\\.tiff"/>
+                <data android:pathPattern=".*\\.indd"/>
+                <data android:pathPattern=".*\\.ai"/>
+                <data android:pathPattern=".*\\.psd"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:name="com.adobe.reader.misc.ARFileURLDownloadActivity" android:theme="@style/AdobeReader.ActionBar.Theme"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:name="com.adobe.reader.connector.ARConnectorFileTransferActivity" android:theme="@style/AdobeReader.ActionBar.Theme"/>
+        <service android:exported="false" android:name="com.adobe.reader.misc.ARFileURLDownloadService"/>
+        <service android:exported="false" android:name="com.adobe.reader.connector.ARConnectorFileTransferService"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:name="com.adobe.reader.services.ARBlueHeronFileTransferActivity" android:theme="@style/AdobeReader.ActionBar.Theme"/>
+        <service android:exported="false" android:name="com.adobe.reader.services.ARFileTransferService"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:name="com.adobe.reader.share.ARFileLinkShareActivity" android:theme="@style/Theme.AdobeReader.ShareDialog"/>
+        <activity android:exported="false" android:label="@string/IDS_ABOUT_STR" android:name="com.adobe.reader.misc.ARAboutActivity" android:theme="@style/aboutDialogTheme"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:label="@string/IDS_PRINTDOCUMENT_COMMAND_LABEL" android:name="com.adobe.reader.misc.ARCloudPrintActivity" android:theme="@style/AdobeReader.ActionBar.Theme"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:label="@string/IDS_SETTINGS_STR" android:name="com.adobe.reader.misc.ARSettingsActivity" android:theme="@style/Theme.AdobeReader.Settings"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:label="@string/IDS_CROP_SCREEN_TITLE" android:name="com.adobe.libs.signature.ui.SGCropActivity" android:theme="@style/Theme.AdobeReader.CropDark"/>
+        <provider android:authorities="com.adobe.reader.intune.fileprovider" android:exported="false" android:grantUriPermissions="false" android:name="com.adobe.reader.misc.ARFileProvider">
+            <grant-uri-permission android:pathPrefix="/adotcom_internal"/>
+            <grant-uri-permission android:pathPrefix="/adotcom_external"/>
+            <grant-uri-permission android:pathPrefix="/attachment_extracted_docs"/>
+            <grant-uri-permission android:pathPrefix="/root_external"/>
+            <grant-uri-permission android:pathPrefix="/sign_image_file"/>
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"/>
+        </provider>
+        <uses-library android:name="com.sec.android.app.multiwindow" android:required="false"/>
+        <meta-data android:name="com.sec.android.support.multiwindow" android:value="true"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:launchMode="singleTask" android:name="com.dropbox.core.android.AuthActivity" android:screenOrientation="user" android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <data android:scheme="@string/DROPBOX_APP_KEY"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:exported="false" android:name="com.adobe.reader.cameratopdf.ARScanAppPromotionActivity" android:theme="@style/scanPromotionTheme"/>
+        <receiver android:exported="true" android:name="com.adobe.reader.misc.ARInstallReferrerBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER"/>
+            </intent-filter>
+        </receiver>
+        <activity android:name="com.adobe.dcmscan.CaptureActivity" android:screenOrientation="portrait" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:label="@string/review_title" android:name="com.adobe.dcmscan.EditorActivity" android:theme="@style/ScanBase"/>
+        <activity android:label="@string/crop_title" android:name="com.adobe.dcmscan.CropActivity" android:theme="@style/ScanBase"/>
+        <activity android:name="com.adobe.dcmscan.CreatePdfActivity" android:theme="@style/ScanBase"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:name="com.adobe.dcmscan.ScanConfirmationActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar" android:windowSoftInputMode="adjustNothing"/>
+        <activity android:label="@string/reorder_title" android:name="com.adobe.dcmscan.ReorderActivity" android:theme="@style/ScanBase"/>
+        <activity android:label="@string/import_photo_title" android:name="com.adobe.dcmscan.ImportPhotoActivity" android:theme="@style/ScanBase"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:label="@string/IDS_SIGNATURE_PANEL_TITLE" android:name="com.adobe.libs.signature.ui.SGSignatureActivity" android:theme="@style/Theme.DialogActivity"/>
+        <receiver android:enabled="false" android:exported="true" android:name="com.adobe.libs.connectors.dropbox.CNDropboxOpenWithIntentReceiver">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER"/>
+            </intent-filter>
+        </receiver>
+        <service android:name="com.adobe.creativesdk.foundation.internal.auth.authenticator.AdobeCSDKAdobeIDAuthenticatorServiceDC">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator"/>
+            </intent-filter>
+            <meta-data android:name="android.accounts.AccountAuthenticator" android:resource="@xml/adobe_csdk_adobeid_authenticator_dc_description"/>
+        </service>
+        <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize" android:name="com.facebook.FacebookActivity" android:theme="@style/com_facebook_activity_theme"/>
+        <activity android:exported="true" android:name="com.facebook.CustomTabActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.facebook.CustomTabMainActivity"/>
+        <activity android:excludeFromRecents="true" android:exported="false" android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <service android:exported="true" android:name="com.google.android.gms.auth.api.signin.RevocationBoundService" android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"/>
+        <activity android:exported="false" android:name="com.google.android.gms.common.api.GoogleApiActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+        <activity android:exported="false" android:label="@string/adobe_csdk_creative_cloud" android:multiprocess="true" android:name="com.adobe.creativesdk.foundation.internal.auth.AdobeAuthSignInActivity" android:theme="@style/AdobeCSDKThemeActivity" android:windowSoftInputMode="adjustNothing|stateUnchanged"/>
+        <activity android:exported="false" android:label="@string/adobe_csdk_creative_cloud" android:launchMode="singleInstance" android:multiprocess="true" android:name="com.adobe.creativesdk.foundation.internal.auth.AdobeAuthContinuableEventActivity" android:theme="@style/AdobeCSDKThemeActivity" android:windowSoftInputMode="adjustNothing|stateUnchanged"/>
+        <activity android:name="com.adobe.creativesdk.foundation.internal.base.AdobeTOUHandlerActivity"/>
+        <service android:exported="true" android:label="" android:name="com.microsoft.intune.mam.client.notification.MAMNotificationReceiverService"/>
+        <service android:exported="false" android:label="" android:name="com.microsoft.intune.mam.client.service.MAMBackgroundService"/>
+        <service android:exported="false" android:label="" android:name="com.microsoft.intune.mam.client.service.MAMBackgroundJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <receiver android:name="com.microsoft.intune.mam.client.service.MAMBackgroundReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
+            </intent-filter>
+        </receiver>
+        <activity android:exported="false" android:multiprocess="true" android:name="com.microsoft.intune.mam.client.app.offline.OfflineStartupBlockedActivity" android:theme="@style/MAMActivityBaseTheme"/>
+        <activity android:exported="false" android:multiprocess="true" android:name="com.microsoft.intune.mam.client.app.offline.OfflineRestartRequiredActivity" android:theme="@style/MAMActivityBaseTheme"/>
+        <activity android:exported="false" android:multiprocess="true" android:name="com.microsoft.intune.mam.client.app.startup.MAMStartupActivity" android:theme="@style/MAMDialogTheme"/>
+        <activity android:exported="false" android:name="com.microsoft.intune.mam.client.app.resolver.MAMResolverActivity" android:theme="@style/MAMDialogTheme"/>
+        <activity android:exported="false" android:name="com.microsoft.intune.mam.client.app.data.WipeUserDataActivity" android:noHistory="true"/>
+        <activity android:exported="false" android:multiprocess="true" android:name="com.microsoft.intune.mam.client.app.offline.OfflineInstallCompanyPortalDialogActivity" android:theme="@style/MAMDialogTheme"/>
+        <activity android:exported="false" android:name="com.microsoft.intune.mam.client.app.offline.OfflineNotifyWipeActivity" android:theme="@style/MAMActivityBaseTheme"/>
+    </application>
+</manifest>

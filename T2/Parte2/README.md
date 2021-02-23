@@ -22,3 +22,10 @@ Nesta tarefa o programa espera como seu primeiro e segundo argumento o caminho p
 ``` bash
 python3 compare.py pe/bin1.exe pe/bin2.exe
 ```
+
+### Testes
+
+Para os testes foram utilizados dois arquivos PE:
+
+- Nome: RiotGames Client; Hash MD4:7e85f67a509e5bdaa52fb1cfb67e2cd5;
+- Nome: Steam; Hash MD4:90f93293f2cb7868bfb5c039394d503a;

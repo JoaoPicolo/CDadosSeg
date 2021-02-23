@@ -27,5 +27,5 @@ python3 compare.py pe/bin1.exe pe/bin2.exe
 
 Para os testes foram utilizados dois arquivos PE:
 
-- Nome: RiotGames Client; Hash MD4:7e85f67a509e5bdaa52fb1cfb67e2cd5;
-- Nome: Steam; Hash MD4:90f93293f2cb7868bfb5c039394d503a;
+- Nome: RiotGames Client; Hash MD5:D476FB65C0E3CFC1A6D06DC9F359776B;
+- Nome: Steam; Hash MD5:29A0D4F99B2AD92BC67D276C0C43D603;

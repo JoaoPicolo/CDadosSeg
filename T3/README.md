@@ -17,7 +17,7 @@ Desta forma é fácil perceber que o _dataset_ é composto majoritariamente por 
 
 O objetivo é treinar uma rede artificial que seja capaz de identificar se uma determinada comunicação configura-se como ataque _DDoS_ ou não. Provalvemente isto pode ser feito utilizando-se um classificador visto que no _dataset_ existe a coluna **_Label_** que identifica se uma determinada linha é benigna ou faz parte de um ataque deste tipo.
 
-Como análise posterior é possível utilizar a coluna **_Timestamp_** para identificar quais os horários ou até mesmo datas (como feriados, por exemplo) em que ataques deste tipo podem acontecer. Caso seja possível realizar isso pode-se tentar melhorar a detecção em datas de grande movimento, como a _Black Friday_.
+Como análise posterior é possível utilizar a coluna **_Timestamp_** para identificar quais os horários ou até mesmo datas (como feriados, por exemplo) em que ataques tem mais chances de acontecer. Caso seja possível realizar isso, pode-se tentar melhorar a detecção em datas de grande movimento, como a _Black Friday_.
 
 Também será possível inferir sobre qual protocolo de rede ocorrem o maior número de ataques através da coluna **_Protocol_**.
 
@@ -34,7 +34,7 @@ O _dataset_ foi dividio então em duas classes: benignos e DDoS. No primeiro cas
 Os dados são bem distrbuídos, podemos ver isso ao analisar as estatísticas da coluna **_Label_** onde 51% dos registros representam ataques DDoS e os outros 49% representam fluxos de rede benignos.
 
 
-Por estarmos lidando com um _dataset_ balanceado é possível perceber que a completude dos dados referentes as colunas restantes, onde quase todas apresentam 100% dos dados válidos. Apenas a coluna **_Timestamp_** difere-se do restante, neste caso temos 4% dos dados válido e 96% dos dados estão incompatíveis com o tipo da coluna. Desta forma é possível concluirmos que caso a análise de tempo proposta anteriormente seja realizada será preciso uma normalização da forma de apresentar estes dados no _dataset_.
+Por estarmos lidando com um _dataset_ balanceado é possível perceber que a completude dos dados referentes as colunas restantes, onde quase todas apresentam 100% dos dados válidos. Apenas a coluna **_Timestamp_** difere-se do restante, neste caso temos 4% dos dados válidos e 96% dos dados estão incompatíveis com o tipo da coluna. Desta forma é possível concluirmos que caso a análise de tempo proposta anteriormente seja realizada será preciso uma normalização da forma de apresentar estes dados no _dataset_.
 
 
 ### Quais colunas/atributos você julga ser interessante manter e remover? Por quê?

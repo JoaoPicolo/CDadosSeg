@@ -1,4 +1,4 @@
-## Exploração de Dados
+## Exploração de Dados - Dataset escolhido pela equipe
 
 ### Que tipos de dados você tem, majoritariamente (atributos numéricos, textuais)?
 
